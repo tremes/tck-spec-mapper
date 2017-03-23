@@ -28,6 +28,7 @@
 
     <properties>
         <jsoup.version>1.8.1</jsoup.version>
+        <jboss.releases.repo.url>http://repository.jboss.org/nexus/content/groups/public</jboss.releases.repo.url>
     </properties>
 
     <dependencies>
@@ -38,7 +39,6 @@
             <version>${jsoup.version}</version>
         </dependency>
     </dependencies>
-
 
     <build>
         <finalName>tck-spec-mapper</finalName>
@@ -84,6 +84,14 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>jboss-releases-repository</id>
+            <name>JBoss Releases Repository</name>
+            <url>${jboss.releases.repo.url}</url>
+        </repository>
+    </distributionManagement>
 
     <repositories>
         <repository>
