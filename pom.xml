@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.jboss</groupId>
+    <artifactId>tck-spec-mapper</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <description>
+        Utility for writing TCK assertions to specification HTML
+    </description>
+
+    <url>http://www.jboss.org</url>
+    <scm>
+        <connection>scm:git:git://github.com/tremes/tck-spec-mapper.git</connection>
+        <developerConnection>scm:git:git@github.com:tremes/tck-spec-mapper.git</developerConnection>
+        <url>https://github.com/tremes/tck-spec-mapper</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Tomas Remes</name>
+            <email>tremes@redhat.com</email>
+            <organization>JBoss, a division of Red Hat</organization>
+        </developer>
+    </developers>
+
+    <properties>
+        <jsoup.version>1.8.1</jsoup.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <!-- jsoup HTML parser library @ http://jsoup.org/ -->
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <finalName>tck-spec-mapper</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <archive>
+                        <compress>true</compress>
+                        <manifest>
+                            <mainClass>org.jboss.cdi.tck.mapper.Mapper</mainClass>
+                            <!--classpathPrefix>META-INF/lib/</classpathPrefix-->
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
