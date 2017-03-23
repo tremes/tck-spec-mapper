@@ -4,7 +4,7 @@
 
     <groupId>org.jboss</groupId>
     <artifactId>tck-spec-mapper</artifactId>
-    <version>1.0.0.Alpha1</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <description>
         Utility for writing TCK assertions to specification HTML
@@ -15,7 +15,7 @@
         <connection>scm:git:git://github.com/tremes/tck-spec-mapper.git</connection>
         <developerConnection>scm:git:git@github.com:tremes/tck-spec-mapper.git</developerConnection>
         <url>https://github.com/tremes/tck-spec-mapper</url>
-        <tag>1.0.0.Alpha1</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <developers>
