@@ -69,7 +69,7 @@
                     <archive>
                         <compress>true</compress>
                         <manifest>
-                            <mainClass>org.jboss.cdi.tck.mapper.Mapper</mainClass>
+                            <mainClass>org.jboss.tck.spec.mapper.Mapper</mainClass>
                             <!--classpathPrefix>META-INF/lib/</classpathPrefix-->
                             <addClasspath>true</addClasspath>
                         </manifest>
