@@ -61,7 +61,11 @@ public class Mapper {
     private List<Section> auditSections;
     private String tckVersion;
     private static final Logger log = Logger.getLogger(Mapper.class.getName());
-    private final static String SPEC_WITH_ASSERTIONS = "spec/target/generated-docs/cdi-spec-with-assertions.html";
+    private final static String SPEC_WITH_ASSERTIONS = System.getProperty("new.spec.filename", "spec-with-assertions.html");
+    private static final String TCK_XML_AUDIT_URL = System.getProperty("tck.audit.url");
+    private static final String COVERAGE_REPORT_HTML_URL = System.getProperty("tck.coverage.url");
+    private static final String SPEC_HTML_PATH = System.getProperty("spec.html.path");
+    private static final String TCK_VERSION = System.getProperty("tck.version");
 
     public Mapper(String tckAuditURL, String coverageReportURL, String pathToCdiSpec, String tckVersion) {
         this.auditParser = new TckAuditSaxParser(tckAuditURL);
@@ -219,17 +223,36 @@ public class Mapper {
 
     public static void main(String[] args) {
         log.addHandler(new ConsoleHandler());
-        log.info("Starting CDI TCK assertions mapper.");
+        log.info("Starting TCK assertions mapper.");
+        checkProperties();
 
-        if (args.length < 4) {
-            log.severe("The TCK mapper accepts  4 arguments!");
-        } else {
-            Mapper mapper = new Mapper(args[0], args[1], args[2], args[3]);
-            mapper.parseTckXmlAudit();
-            mapper.parseCoverageHtml();
-            mapper.writeToSpec();
-            log.info("CDI TCK assertions mapper succesfully finished.");
+        Mapper mapper = new Mapper(TCK_XML_AUDIT_URL, COVERAGE_REPORT_HTML_URL, SPEC_HTML_PATH, TCK_VERSION);
+        mapper.parseTckXmlAudit();
+        mapper.parseCoverageHtml();
+        mapper.writeToSpec();
+        log.info("TCK assertions mapper succesfully finished.");
+
+    }
+
+    private static void checkProperties() {
+        if (TCK_XML_AUDIT_URL == null || TCK_XML_AUDIT_URL.isEmpty()) {
+            log.severe("tck.audit.url system property was not defined!");
+            System.exit(1);
         }
 
+        if (COVERAGE_REPORT_HTML_URL == null || COVERAGE_REPORT_HTML_URL.isEmpty()) {
+            log.severe("tck.coverage.url system property was not defined!");
+            System.exit(1);
+        }
+
+        if (SPEC_HTML_PATH == null || SPEC_HTML_PATH.isEmpty()) {
+            log.severe("spec.html.path system property was not defined!");
+            System.exit(1);
+        }
+
+        if (TCK_VERSION == null || TCK_VERSION.isEmpty()) {
+            log.severe("tck.version system property was not defined!");
+            System.exit(1);
+        }
     }
 }
