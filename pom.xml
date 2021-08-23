@@ -36,7 +36,7 @@
     </developers>
 
     <properties>
-        <jsoup.version>1.8.1</jsoup.version>
+        <jsoup.version>1.14.2</jsoup.version>
         <jboss.releases.repo.url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</jboss.releases.repo.url>
     </properties>
 
